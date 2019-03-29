@@ -7,12 +7,12 @@
 class World {
 public:
 	const IVec3 worldSize;
-	const int chunkSize = 16;
+	const int chunkBits = 4;
 
 	std::unordered_map<std::string, Chunk*> chunks;
 
 	World(const IVec3 worldSize) : worldSize(worldSize) {};
-	World(const IVec3 worldSize, const int chunkSize) : worldSize(worldSize), chunkSize(chunkSize) {};
+	World(const IVec3 worldSize, const int chunkBits) : worldSize(worldSize), chunkBits(chunkBits) {};
 	~World() {
 		for (auto const& pair: chunks) {
 			delete pair.second;

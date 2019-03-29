@@ -2,6 +2,7 @@
 
 //returns true if chunkPos changed
 bool PsuedoRay::next() {
+	steps++;
 	IVec3 mask = IVec3(0);
 	if (nearestCube.x <= nearestCube.y) {
 		if (nearestCube.x < nearestCube.z) {

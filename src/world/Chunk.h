@@ -4,19 +4,17 @@
 
 class Chunk {
 private:
-	const int chunkSize;
+	const int chunkBits;
 
 	int getIndex(IVec3 blockPos);
 public:
 	int *blocks;
 
-	Chunk(int *blocks, int chunkSize) : chunkSize(chunkSize), blocks(blocks) {};
-	Chunk(int chunkSize) : chunkSize(chunkSize) {
-		std::cout << "creating chunk" << std::endl;
-		this->blocks = (int*)calloc(this->chunkSize*this->chunkSize*this->chunkSize, sizeof(int));
+	Chunk(int *blocks, int chunkBits) : chunkBits(chunkBits), blocks(blocks) {};
+	Chunk(int chunkBits) : chunkBits(chunkBits) {
+		this->blocks = (int*)calloc(1<<this->chunkBits*3, sizeof(int));
 	};
 	~Chunk() {
-		std::cout << "deleting chunk" << std::endl;
 		free(blocks);
 	};
 
