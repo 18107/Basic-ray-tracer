@@ -8,14 +8,15 @@ private:
 
 	int getIndex(IVec3 blockPos);
 public:
-	int *blocks;
+	const int *blocks;
 
 	Chunk(int *blocks, int chunkBits) : chunkBits(chunkBits), blocks(blocks) {};
 	Chunk(int chunkBits) : chunkBits(chunkBits) {
 		this->blocks = (int*)calloc(1<<this->chunkBits*3, sizeof(int));
 	};
 	~Chunk() {
-		free(blocks);
+		free((int*)blocks);
+		blocks = 0;
 	};
 
 	int getBlock(const IVec3 blockPos);

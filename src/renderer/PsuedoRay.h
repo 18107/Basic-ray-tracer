@@ -8,8 +8,6 @@
 class PsuedoRay {
 public:
 	const int chunkBits;
-	const int chunkSize;
-	IVec3 chunkPos;
 	IVec3 current;
 	Vec3 nearestCube;
 	Vec3 inc;
@@ -18,9 +16,7 @@ public:
 
 	PsuedoRay(int chunkBits, const Vec3 position, const Vec3 direction) :
 		chunkBits(chunkBits),
-		chunkSize(1<<chunkBits),
-		chunkPos((position/chunkSize).floor()),
-		current(position.floor()%chunkSize),
+		current(position.floor()%(1<<chunkBits)),
 		nearestCube(((Vec3)position.ceil() - position - Vec3(direction.x >= 0 ? 0 : 1, direction.y >= 0 ? 0 : 1, direction.z >= 0 ? 0 : 1))/direction),
 		inc(Vec3(direction.x == 0 ? 0 : 1/direction.x, direction.y == 0 ? 0 : 1/direction.y, direction.z == 0 ? 0 : 1/direction.z).abs()),
 		iinc(IVec3(direction.x > 0 ? 1 : -1, direction.y > 0 ? 1 : -1, direction.z > 0 ? 1 : -1)) {
@@ -28,10 +24,10 @@ public:
 		if (isnan(nearestCube.y)) nearestCube.y = 1.0/0.0;
 		if (isnan(nearestCube.z)) nearestCube.z = 1.0/0.0;
 	};
-	PsuedoRay(int chunkBits, const IVec3 chunkPos, const IVec3 current, const Vec3 nearestCube, const Vec3 inc, const IVec3 iinc) :
-		chunkBits(chunkBits), chunkSize(1<<chunkBits), chunkPos(chunkPos), current(current), nearestCube(nearestCube), inc(inc), iinc(iinc) {};
+	PsuedoRay(int chunkBits, const IVec3 current, const Vec3 nearestCube, const Vec3 inc, const IVec3 iinc) :
+		chunkBits(chunkBits), current(current), nearestCube(nearestCube), inc(inc), iinc(iinc) {};
 
-	bool next();
+	void next();
 };
 
 #endif /* RENDERER_PSUEDORAY_H_ */

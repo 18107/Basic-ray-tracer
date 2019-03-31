@@ -59,7 +59,7 @@ IVec3 IVec3::operator &(const IVec3 vec) const {
 }
 
 IVec3 IVec3::operator &(const int i) const {
-	return IVec3(this->x & i, this->y & i, this->z & z);
+	return IVec3(this->x & i, this->y & i, this->z & i);
 }
 
 IVec3 IVec3::operator |(const IVec3 vec) const {
@@ -67,7 +67,7 @@ IVec3 IVec3::operator |(const IVec3 vec) const {
 }
 
 IVec3 IVec3::operator |(const int i) const {
-	return IVec3(this->x | i, this->y | i, this->z | z);
+	return IVec3(this->x | i, this->y | i, this->z | i);
 }
 
 IVec3 IVec3::operator ^(const IVec3 vec) const {
@@ -75,7 +75,7 @@ IVec3 IVec3::operator ^(const IVec3 vec) const {
 }
 
 IVec3 IVec3::operator ^(const int i) const {
-	return IVec3(this->x ^ i, this->y ^ i, this->z ^ z);
+	return IVec3(this->x ^ i, this->y ^ i, this->z ^ i);
 }
 
 IVec3 IVec3::operator <<(const IVec3 vec) const {

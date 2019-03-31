@@ -1,7 +1,7 @@
 #include "PsuedoRay.h"
 
 //returns true if chunkPos changed
-bool PsuedoRay::next() {
+void PsuedoRay::next() {
 	steps++;
 	IVec3 mask = IVec3(0);
 	if (nearestCube.x <= nearestCube.y) {
@@ -19,8 +19,4 @@ bool PsuedoRay::next() {
 	}
 	nearestCube += inc*mask;
 	current += iinc*mask;
-	IVec3 mask2 = (current>>chunkBits)&1;
-	chunkPos += iinc*mask2;
-	current &= chunkSize-1;
-	return mask2.x | mask2.y | mask2.z;
 }
